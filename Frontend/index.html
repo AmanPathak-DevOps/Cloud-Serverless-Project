@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloody Sweet</title>
+    <link rel="stylesheet" href="css/main.css">
+    <div id="customModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <p>Please fill out all fields.</p>
+    </div>
+    <script>
+        var fetchStudentData = () => {
+            //API Gateway endpoint for fetching student data
+            var endpoint = '<API_GET_ENDPOINT>'; // Replace with your actual endpoint
+            // Make API call to fetch student data
+            fetch(endpoint)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    updateTable(data);
+                })
+                .catch(error => console.error('Error fetching student data:', error));
+        }
+
+        // Function to update the table with fetched student data
+        var updateTable = (data) => {
+            var tbody = document.getElementById('studentTableBody');
+            tbody.innerHTML = "";
+
+            if (Array.isArray(data)) {
+                data.forEach(student => {
+                    var row = tbody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+
+            cell1.innerHTML = student.roll_number;
+            cell2.innerHTML = student.student_name;
+            cell3.innerHTML = student.student_class;
+        });
+            } else if (data.statusCode && data.body) {
+                console.error('Error response from API:', data.body);
+            } else {
+                console.error('Unexpected response from API:', data);
+            }
+        }
+
+
+
+        // callAPI function that takes the base and exponent numbers as parameters
+        var addStudent = (rollNumber, studentName, className) => {
+            
+            if (!rollNumber || !studentName || className === 'Select') {
+                // alert('Please fill out all fields');
+                document.getElementById('customModal').style.display = 'block';
+                document.getElementById('rollNumber').disabled = true;
+            document.getElementById('studentName').disabled = true;
+            document.getElementById('class').disabled = true;
+
+                return;
+            }
+
+            closeModal();
+            
+            var endpoint = '<API_POST_ENDPOINT>';
+
+            // Instantiate a headers object
+            var myHeaders = new Headers();
+            // Add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+
+            // Using built-in JSON utility package to turn object to string and store in a variable
+            var raw = JSON.stringify({
+                "roll_number": rollNumber,
+                "student_name": studentName,
+                "student_class": className
+            });
+
+            // Create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch(endpoint, requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Clear input fields on success
+                    document.getElementById('rollNumber').value = '';
+                    document.getElementById('studentName').value = '';
+                    document.getElementById('class').value = 'Select';
+                    return response.text();
+                })
+                .then(result => {
+                    // alert(JSON.parse(result).body);
+                    fetchStudentData();
+                })
+                .catch(error => console.log('error', error));
+        }
+        function closeModal() {
+            document.getElementById('customModal').style.display = 'none';
+            enableTextFields();
+        }
+        function enableTextFields() {
+        document.getElementById('rollNumber').disabled = false;
+        document.getElementById('studentName').disabled = false;
+        document.getElementById('class').disabled = false;
+    }
+
+
+        window.addEventListener('load', fetchStudentData);
+    </script>
+</head>
+<body>
+    <div id="login-container">
+    <form>
+        <h1>Bloody Sweet</h1>
+        <p>
+        <input type="number" id="rollNumber" placeholder="Roll Number" required>
+    </p>
+    <p>
+        <input type="text" id="studentName" pattern="[A-Za-z ]+" placeholder="Name" title="Only alphabets and spaces are allowed" required>
+    </p>
+    <p>
+        <select name="class" id="class" required>
+            <option value="Select">Select</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+            <option value="11th">11th</option>
+            <option value="12th">12th</option>
+        </select>
+    </p>
+    <div class="star-right"></div>
+    <div class="star-left"></div>
+
+        <!-- Calculate button remains the same -->
+        <button type="button" onclick="addStudent(document.getElementById('rollNumber').value, document.getElementById('studentName').value, document.getElementById('class').value)">ADD</button>
+    </form>
+</div>
+
+    <!-- Table for Student Information -->
+    <table>
+        <thead>
+            <tr>
+                <th>Student Roll Number</th>
+                <th>Student Name</th>
+                <th>Class</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+        </tbody>
+    </table>    
+
+    <div class="footer">
+
+        <a href="https://www.linkedin.com/in/aman-devops" target="_blank" class="social-icons" onclick="redirectToSocialMedia('LinkedIn')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png" alt="LinkedIn" width="30" height="30">
+        </a>
+        <a href="https://x.com/the_aman_pathak" target="_blank" class="social-icons" onclick="redirectToSocialMedia('twitter')">
+            <img src="https://about.twitter.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png" alt="Twitter" width="30" height="30">
+        </a>
+        <a href="https://instagram.com/pathak_sahab07" target="_blank" class="social-icons" onclick="redirectToSocialMedia('instagram')">
+            <img src="https://freelogopng.com/images/all_img/1658586823instagram-logo-transparent.png" alt="Instagram" width="30" height="30">
+        </a>
+        <a href="https://github.com/AmanPathak-DevOps" target="_blank" class="social-icons" onclick="redirectToSocialMedia('github')">
+            <img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="Instagram" width="30" height="30">
+        </a>
+        <a href="https://medium.com/@aman-pathak-devops" target="_blank" class="social-icons" onclick="redirectToSocialMedia('medium')">
+            <img src="https://miro.medium.com/v2/resize:fit:8978/1*s986xIGqhfsN8U--09_AdA.png" alt="Instagram" width="100" height="30">
+        </a>
+
+        <!-- Creation credit -->
+        <p class="credit">
+        <h1 style="font-size:15px; color:white; margin:10px;">Created by Aman Pathak</h1>
+        <p style="font-size:15px; color: white;"><em>DevOps Engineer</em></p>
+</p>
+    </div>
+</body>
+</html>

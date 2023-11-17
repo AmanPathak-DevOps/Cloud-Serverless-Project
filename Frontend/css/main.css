@@ -1,0 +1,258 @@
+    body {
+        font-family: 'Arial', sans-serif;
+        /* background-color: #f5f5f5; */
+        margin: 20px;
+        background-image: url("../images/bg-01.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+        form {
+        background: linear-gradient(to right, #8b65e4, #ce81e6);
+        border-radius: 15px;
+        padding: 20px;
+        width: 400px;
+        margin: 0 auto;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.9);
+        opacity: 0.9;
+        margin-bottom: 20px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+    } 
+
+    #login-container {
+        position: relative;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to right, #ffcc00, #ff6666); /* Adjust gradient colors */
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border-radius: 10px; /* Rounded corners */
+        font-family: 'Algerian', sans-serif; /* Algerian font or any other preferred font */
+        color: #fff; /* Text color */
+        text-align: center;
+    }
+    /* Style for the close button */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    .star-left,
+    .star-right {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background-color: yellow;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        animation: starPopup 5s ease-in-out forwards;
+        display: none; /* Initially hide the star */
+    }
+    
+    /* Add a hover effect to trigger the star animation */
+    
+    form:hover .star-left,
+    form:hover .star-right {
+        display: block; /* Show the star on hover */
+    }
+    
+    @keyframes starPopup {
+        0% {
+            transform: translate(100%, -50%) scale(0); /* Initial state: hidden and scaled down, starting from the right */
+        }
+        25% {
+            transform: translate(0%, -50%) scale(1); /* Move to the left and reach normal size at 25% of the animation duration */
+        }
+        75% {
+            transform: translate(0%, -50%) scale(1); /* Stay visible for the middle 50% of the animation duration */
+        }
+        100% {
+            transform: translate(-100%, -50%) scale(0); /* Move to the left and scale down at the end */
+        }
+    }
+    @keyframes starPopup {
+        0%, 100% {
+            transform: translateX(100%) translateY(-50%) scale(0); /* Initial and final state: hidden and scaled down */
+        }
+        50% {
+            transform: translateX(0) translateY(-50%) scale(1); /* Middle state: fully visible and normal size */
+        }
+    }
+    
+    
+
+    form:hover {
+        transform: rotateX(10deg); /* Adjust the rotation angle as needed */
+    }
+    h1 {
+        color: #521c1c;
+        border-color: rgb(0, 0, 0);
+        border-width: 10px;
+        text-align: center;
+        font-family: Helvetica;
+        color: #ff4b2b;
+        border: 3px solid black; /* Add this line to create a black border around the text */
+        display: inline-block; /* Add this line to make the border wrap around the text */
+        padding: 5px; /* Adjust the padding as needed */
+    }
+
+    label {
+        display: block; /* Each label on a new line */
+        margin-bottom: 10px; /* Add margin between labels and fields */
+    }
+
+    input,
+    select {
+        padding: 8px;
+        border-radius: 5px;
+        width: 40% !important; /* Reduce textfield width */
+        margin-bottom: 7px; /* Add margin between fields */
+        text-align: center;
+        display: inline-block;
+    }
+
+
+
+    table {
+        width: 60%; /* Increase table width */
+        border-collapse: collapse;
+        margin: 0 auto; /* Center the table */
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        margin-top: 20px; /* Add margin between form and table */
+        opacity: 0.8;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        transition: transform 0.3s;
+    }
+
+    th {
+        background-color: #ff3333;
+        color: white;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #ff3333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block; /* Make the button a block element */
+        margin: 0 auto; /* Center the button */
+        margin-top: 10px; /* Add margin between the last textfield and button */
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #cc0000; /* Background color on hover */
+    }
+
+    th:nth-child(2),
+    td:nth-child(2),
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 33%;
+    }
+
+    /* Added border between columns */
+    th,
+    td {
+        border-right: 3px solid #361515;
+    }
+
+    th:last-child,
+    td:last-child {
+        border-right: none;
+        width: 33%;
+    }
+    label {
+        margin-left: 40px;
+    }
+
+    input,
+    select {
+        margin-left: 10px;
+        margin-right: 20px;
+        border-radius: 50px;
+        border-color: #0036cc;
+    }
+    input:hover,
+    select:hover {
+        transform: scale(1.1);
+    }
+    /* Zoom in effect on hover */
+    table:hover,
+    form:hover {
+        transform: scale(1.1);
+    }
+    /* Add a container for social media links and creation credit */
+    .social-credit-container {
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+    }
+
+    /* Styling for social media links */
+    .social-link {
+        margin: 0 10px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+        text-align: center;
+    }
+
+    .social-icons:hover {
+        transform: rotateX(10deg);
+    }
+    .credit {
+        margin-top: 20px;
+        /* margin-right: 100px; */
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+    }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        right: 0; /* Align to the right side */
+        width: auto; /* Adjust width as needed */
+        /* background: #ffffff; Update background color if necessary */
+        padding: 10px;
+        text-align: right;
+        color: #fff;
+    }
+
+    .social-icons {
+        font-size: 24px;
+        margin: 0 10px;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+        text-align: center;
+        display: inline-block; /* Make the icons inline */
+    }
+
+    .social-icons:hover {
+        transform: rotateX(10deg);
+    }
