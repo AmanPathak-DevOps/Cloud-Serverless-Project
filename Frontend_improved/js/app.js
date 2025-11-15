@@ -1,7 +1,7 @@
 
         var fetchStudentData = () => {
             //API Gateway endpoint for fetching student data
-            var endpoint = '<API_GET_ENDPOINT>'; // Replace with your actual endpoint
+            var endpoint = 'https://sz624okgl4.execute-api.us-east-1.amazonaws.com/student-apistage/getStudent'; // Replace with your actual endpoint
             // Make API call to fetch student data
             fetch(endpoint)
                 .then(response => {
@@ -56,7 +56,7 @@
 
             closeModal();
             
-            var endpoint = '<API_POST_ENDPOINT>';
+            var endpoint = 'https://sz624okgl4.execute-api.us-east-1.amazonaws.com/student-apistage/addStudent';
 
             // Instantiate a headers object
             var myHeaders = new Headers();
