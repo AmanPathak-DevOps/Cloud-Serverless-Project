@@ -42,6 +42,18 @@
           <option>Class 1</option>
           <option>Class 2</option>
           <option>Class 3</option>
+          <option>Class 4</option>
+          <option>Class 5</option>
+          <option>Class 6</option>
+          <option>Class 7</option>
+          <option>Class 8</option>
+          <option>Class 9</option>
+          <option>Class 10</option>
+          <option>Class 11</option>
+          <option>Class 12</option>
+          <option>Bachelor's(College)</option>
+          <option>Master's(College)</option>
+          <option>Others</option>
         </select>
 
         <div class="form-actions">
@@ -54,26 +66,6 @@
     <section class="card" aria-labelledby="tableTitle">
       <h2 id="tableTitle">Students</h2>
       <div class="table-wrap">
-      <div class="table-controls" role="region" aria-label="Table controls">
-        <div class="controls-left">
-          <input id="searchInput" class="search-input" placeholder="Search by name or roll…" aria-label="Search students" />
-          <select id="filterClass" aria-label="Filter by class">
-            <option value="">All classes</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
-          </select>
-          <button id="exportCsv" class="btn" title="Export as CSV">Export CSV</button>
-          <button id="copyTable" class="btn" title="Copy table">Copy</button>
-        </div>
-        <div class="controls-right">
-          <label for="rowsPerPage">Rows:</label>
-          <select id="rowsPerPage" aria-label="Rows per page">
-            <option>5</option><option>10</option><option>25</option>
-          </select>
-        </div>
-      </div>
-
         <table class="students-table" aria-describedby="tableTitle">
           <thead>
             <tr><th>Roll</th><th>Name</th><th>Class</th></tr>
@@ -94,46 +86,25 @@
       </div>
       <div class="socials" aria-hidden="false">
         <a href="https://github.com/AmanPathak-DevOps" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a> ·
-        <a href="https://medium.com/@aman-pathak-devops" target="_blank" rel="noopener" aria-label="Medium">Medium</a>
+        <a href="https://medium.com/@amanpathakdevops" target="_blank" rel="noopener" aria-label="Medium">Medium</a>
       </div>
     </div>
   </footer>
 
   <!-- Accessible modal -->
   <div id="customModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+
     <div class="modal-content">
       <button class="modal-close" aria-label="Close" onclick="closeModal()">&times;</button>
-      <p>Please fill out all fields.</p>
+
+      <div class="modal-body">
+        <p class="modal-message">⚠️ Please fill out all fields.</p>
+      </div>
     </div>
   </div>
+
 
   <script src="js/app.js" defer></script>
-
-  <button id="fabAdd" class="fab" aria-label="Add student">＋</button>
-
-  <div id="bottomSheet" class="bottom-sheet" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="sheet-bar" id="sheetBar"></div>
-    <div class="sheet-content">
-      <h3>Add Student</h3>
-      <form id="sheetForm" class="form sheet-form" autocomplete="on" novalidate>
-        <label for="sheetRoll">Roll Number</label>
-        <input id="sheetRoll" name="sheetRoll" type="text" inputmode="numeric" required aria-required="true" />
-
-        <label for="sheetName">Student Name</label>
-        <input id="sheetName" name="sheetName" type="text" required aria-required="true" />
-
-        <label for="sheetClass">Class</label>
-        <select id="sheetClass" name="sheetClass" required aria-required="true">
-          <option value="Select">Select</option><option>Class 1</option><option>Class 2</option><option>Class 3</option>
-        </select>
-
-        <div class="form-actions">
-          <button type="submit" class="btn primary">Add</button>
-          <button type="button" id="sheetCancel" class="btn">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
 </body>
 </html>
