@@ -1,7 +1,7 @@
 
         var fetchStudentData = () => {
             //API Gateway endpoint for fetching student data
-            var endpoint = '<API_GET_ENDPOINT>'; // Replace with your actual endpoint
+            var endpoint = 'https://sz624okgl4.execute-api.us-east-1.amazonaws.com/student-apistage/getStudent'; // Replace with your actual endpoint
             // Make API call to fetch student data
             fetch(endpoint)
                 .then(response => {
@@ -43,7 +43,7 @@
 
         // callAPI function that takes the base and exponent numbers as parameters
         var addStudent = (rollNumber, studentName, className) => {
-            
+
             if (!rollNumber || !studentName || className === 'Select') {
                 // alert('Please fill out all fields');
                 document.getElementById('customModal').style.display = 'block';
@@ -55,8 +55,8 @@
             }
 
             closeModal();
-            
-            var endpoint = '<API_POST_ENDPOINT>';
+
+            var endpoint = 'https://sz624okgl4.execute-api.us-east-1.amazonaws.com/student-apistage/addStudent';
 
             // Instantiate a headers object
             var myHeaders = new Headers();
@@ -106,7 +106,7 @@
 
 
         window.addEventListener('load', fetchStudentData);
-    
+
 
 // preserve original functions above. Add UI glue without changing API logic:
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -300,7 +300,7 @@ fetchStudentData = function(){
         const rows = Array.from(tbody.querySelectorAll('tr')).map(tr=>{
             const tds = tr.querySelectorAll('td');
             // depending on structure: avatar+roll in first td
-            const roll = (tds[0] && tds[0].querySelector('span:last-child')) ? tds[0].querySelector('span:last-child').textContent.trim() : (tds[1]?tds[1].textContent.trim():''); 
+            const roll = (tds[0] && tds[0].querySelector('span:last-child')) ? tds[0].querySelector('span:last-child').textContent.trim() : (tds[1]?tds[1].textContent.trim():'');
             return { roll_number: roll, student_name: (tds[1]?tds[1].textContent.trim():''), student_class: (tds[2]?tds[2].textContent.trim():'')};
         });
         if(rows && rows.length) { allStudentsCache = rows; filteredStudents = rows; currentPage=1; applyFiltersAndRender(); localStorage.setItem('studentsCache', JSON.stringify(rows)); }
