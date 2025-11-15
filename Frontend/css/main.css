@@ -160,7 +160,7 @@ body{
 }
 .students-table th,
 .students-table td{
-  padding:.65rem .75rem;text-align:left;
+  padding:.65rem .75rem;text-align:center;
   border-bottom:1px solid var(--border-color);
 }
 .students-table thead th{
