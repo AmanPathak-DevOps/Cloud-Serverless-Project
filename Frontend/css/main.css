@@ -1,258 +1,282 @@
-    body {
-        font-family: 'Arial', sans-serif;
-        /* background-color: #f5f5f5; */
-        margin: 20px;
-        background-image: url("../images/bg-01.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+/* ======================================================
+   GLOBAL THEME VARIABLES + ANIMATED THEME SYSTEM
+   ====================================================== */
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent:#7c5cff;
+  --accent-2:#00d4ff;
+  --text:#e6eef8;
+  --success:#3bd671;
+  --danger:#ff6b6b;
+  --radius:12px;
+  --gap:1rem;
+  --max-width:980px;
 
-        form {
-        background: linear-gradient(to right, #8b65e4, #ce81e6);
-        border-radius: 15px;
-        padding: 20px;
-        width: 400px;
-        margin: 0 auto;
-        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.9);
-        opacity: 0.9;
-        margin-bottom: 20px;
-        text-align: center;
-        transition: transform 0.3s ease-in-out;
-    } 
+  /* Fix border color */
+  --border-color: rgba(255,255,255,0.08);
 
-    #login-container {
-        position: relative;
-    }
-    .modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(to right, #ffcc00, #ff6666); /* Adjust gradient colors */
-        padding: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        border-radius: 10px; /* Rounded corners */
-        font-family: 'Algerian', sans-serif; /* Algerian font or any other preferred font */
-        color: #fff; /* Text color */
-        text-align: center;
-    }
-    /* Style for the close button */
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
-    
-    .star-left,
-    .star-right {
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        transform: translate(-50%, -50%);
-        width: 20px;
-        height: 20px;
-        background-color: yellow;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        animation: starPopup 5s ease-in-out forwards;
-        display: none; /* Initially hide the star */
-    }
-    
-    /* Add a hover effect to trigger the star animation */
-    
-    form:hover .star-left,
-    form:hover .star-right {
-        display: block; /* Show the star on hover */
-    }
-    
-    @keyframes starPopup {
-        0% {
-            transform: translate(100%, -50%) scale(0); /* Initial state: hidden and scaled down, starting from the right */
-        }
-        25% {
-            transform: translate(0%, -50%) scale(1); /* Move to the left and reach normal size at 25% of the animation duration */
-        }
-        75% {
-            transform: translate(0%, -50%) scale(1); /* Stay visible for the middle 50% of the animation duration */
-        }
-        100% {
-            transform: translate(-100%, -50%) scale(0); /* Move to the left and scale down at the end */
-        }
-    }
-    @keyframes starPopup {
-        0%, 100% {
-            transform: translateX(100%) translateY(-50%) scale(0); /* Initial and final state: hidden and scaled down */
-        }
-        50% {
-            transform: translateX(0) translateY(-50%) scale(1); /* Middle state: fully visible and normal size */
-        }
-    }
-    
-    
+  /* Shadows */
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.25);
 
-    form:hover {
-        transform: rotateX(10deg); /* Adjust the rotation angle as needed */
-    }
-    h1 {
-        color: #521c1c;
-        border-color: rgb(0, 0, 0);
-        border-width: 10px;
-        text-align: center;
-        font-family: Helvetica;
-        color: #ff4b2b;
-        border: 3px solid black; /* Add this line to create a black border around the text */
-        display: inline-block; /* Add this line to make the border wrap around the text */
-        padding: 5px; /* Adjust the padding as needed */
-    }
+  /* Smooth theme animation */
+  --transition-speed: 0.35s;
+}
 
-    label {
-        display: block; /* Each label on a new line */
-        margin-bottom: 10px; /* Add margin between labels and fields */
-    }
+/* BEAUTIFUL THEME FADE ANIMATION */
+* {
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    fill var(--transition-speed) ease;
+}
 
-    input,
-    select {
-        padding: 8px;
-        border-radius: 5px;
-        width: 40% !important; /* Reduce textfield width */
-        margin-bottom: 7px; /* Add margin between fields */
-        text-align: center;
-        display: inline-block;
-    }
+/* ======================================================
+   LIGHT THEME (FULL OVERRIDE)
+   ====================================================== */
+:root[data-theme="light"]{
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #4b5563;
 
+  --accent: #6366f1;     /* Indigo 500 */
+  --accent-2: #3b82f6;   /* Blue 500 */
 
+  --success: #16a34a;    /* Green 600 */
+  --danger: #dc2626;     /* Red 600 */
 
-    table {
-        width: 60%; /* Increase table width */
-        border-collapse: collapse;
-        margin: 0 auto; /* Center the table */
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
-        text-align: center;
-        margin-top: 20px; /* Add margin between form and table */
-        opacity: 0.8;
-    }
+  --border-color: rgba(0,0,0,0.12);
 
-    th,
-    td {
-        padding: 12px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-        transition: transform 0.3s;
-    }
+  --shadow-lg: 0 12px 28px rgba(0,0,0,0.09);
+  --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+}
 
-    th {
-        background-color: #ff3333;
-        color: white;
-    }
+/* ======================================================
+   RESET + BASE
+   ====================================================== */
 
-    button {
-        padding: 10px;
-        background-color: #ff3333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display: block; /* Make the button a block element */
-        margin: 0 auto; /* Center the button */
-        margin-top: 10px; /* Add margin between the last textfield and button */
-        transition: background-color 0.3s;
-    }
-    button:hover {
-        background-color: #cc0000; /* Background color on hover */
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin:0;
+  background: var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.45;
+  padding-bottom:3rem;
+}
+.container{max-width:var(--max-width);margin:0 auto;padding:1rem}
 
-    th:nth-child(2),
-    td:nth-child(2),
-    th:nth-child(3),
-    td:nth-child(3) {
-        width: 33%;
-    }
+/* Skip link */
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{
+  position:static;background:var(--accent);color:#001;
+  border-radius:4px;padding:.5rem 1rem;
+  left:1rem;top:1rem;z-index:9999;
+}
 
-    /* Added border between columns */
-    th,
-    td {
-        border-right: 3px solid #361515;
-    }
+/* ======================================================
+   HEADER
+   ====================================================== */
+.site-header{
+  background:rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  position:sticky;top:0;z-index:20;
+  border-bottom:1px solid var(--border-color);
+  transition: all .25s ease;
+}
+.site-header[data-theme="light"]{
+  background: rgba(255,255,255,0.65);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 0;
+}
+.brand .logo{font-size:1.4rem;margin:0;color:var(--accent)}
+.brand .tag{font-size:.8rem;color:var(--muted);margin:2px 0 0}
 
-    th:last-child,
-    td:last-child {
-        border-right: none;
-        width: 33%;
-    }
-    label {
-        margin-left: 40px;
-    }
+/* ======================================================
+   CARDS
+   ====================================================== */
+.card{
+  background:var(--card);
+  padding:1rem;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  margin:1rem 0;
+  border:1px solid var(--border-color);
+}
 
-    input,
-    select {
-        margin-left: 10px;
-        margin-right: 20px;
-        border-radius: 50px;
-        border-color: #0036cc;
-    }
-    input:hover,
-    select:hover {
-        transform: scale(1.1);
-    }
-    /* Zoom in effect on hover */
-    table:hover,
-    form:hover {
-        transform: scale(1.1);
-    }
-    /* Add a container for social media links and creation credit */
-    .social-credit-container {
-        margin-top: 20px;
-        text-align: center;
-        color: #fff;
-    }
+/* ======================================================
+   FORMS
+   ====================================================== */
+.form{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.75rem 1rem;align-items:end
+}
+.form label{font-size:.85rem;color:var(--muted)}
+.form input,.form select{
+  padding:.6rem .75rem;border-radius:8px;
+  border:1px solid var(--border-color);
+  background:transparent;color:var(--text);
+  transition:all .18s ease;
+}
+.form input:focus,.form select:focus{
+  box-shadow:0 6px 20px rgba(124,92,255,0.12);
+  border-color:var(--accent);
+}
+.form-actions{grid-column:1 / -1;display:flex;gap:.5rem}
 
-    /* Styling for social media links */
-    .social-link {
-        margin: 0 10px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-        text-align: center;
-    }
+/* Buttons */
+.btn{
+  padding:.6rem .9rem;border-radius:10px;
+  border:1px solid var(--border-color);
+  background:transparent;color:var(--text);
+  cursor:pointer;
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border:none;color:#001;font-weight:600
+}
+.icon-btn{font-size:1.0rem;padding:.45rem}
 
-    .social-icons:hover {
-        transform: rotateX(10deg);
-    }
-    .credit {
-        margin-top: 20px;
-        /* margin-right: 100px; */
-        text-align: center;
-        color: #fff;
-        font-size: 14px;
-    }
-    .footer {
-        position: fixed;
-        bottom: 0;
-        right: 0; /* Align to the right side */
-        width: auto; /* Adjust width as needed */
-        /* background: #ffffff; Update background color if necessary */
-        padding: 10px;
-        text-align: right;
-        color: #fff;
-    }
+/* ======================================================
+   TABLE
+   ====================================================== */
+.table-wrap{overflow:auto}
+.students-table{
+  width:100%;border-collapse:collapse;margin-top:.5rem;
+}
+.students-table th,
+.students-table td{
+  padding:.65rem .75rem;text-align:left;
+  border-bottom:1px solid var(--border-color);
+}
+.students-table thead th{
+  font-size:.9rem;color:var(--muted);
+}
 
-    .social-icons {
-        font-size: 24px;
-        margin: 0 10px;
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.3s;
-        text-align: center;
-        display: inline-block; /* Make the icons inline */
-    }
+/* ======================================================
+   MODAL (ANIMATED)
+   ====================================================== */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 9999;
+}
+.modal[aria-hidden="false"]{ display:grid; }
 
-    .social-icons:hover {
-        transform: rotateX(10deg);
-    }
+/* Overlay */
+.modal-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(4px);
+  z-index:1;
+}
+
+/* Modal box */
+.modal-content{
+  position:relative;z-index:2;
+  background:var(--card);
+  border:1px solid var(--border-color);
+  padding:1.6rem 2rem;
+  border-radius:14px;
+  max-width:420px;width:90%;
+  box-shadow:var(--shadow-lg);
+
+  opacity:0;
+  transform:translateY(20px) scale(0.95);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.modal[aria-hidden="false"] .modal-content{
+  opacity:1;transform:translateY(0) scale(1);
+}
+
+/* Close button */
+.modal-close{
+  position:absolute;top:8px;right:10px;
+  background:transparent;border:none;
+  color:var(--muted);font-size:1.5rem;
+  cursor:pointer;transition:.2s;
+}
+.modal-close:hover{
+  color:var(--text);transform:scale(1.2);
+}
+
+/* Modal text */
+.modal-body{text-align:center;margin-top:10px}
+.modal-message{
+  font-size:1.15rem;font-weight:600;
+  color:var(--danger);
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+.site-footer{
+  width: 100%;
+  background: linear-gradient(
+      90deg,
+      var(--cartoon-accent-1),
+      var(--cartoon-accent-2)
+  );
+  padding: 0.8rem 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -4px 14px rgba(0,0,0,0.15);
+  margin-top: 2rem;        /* creates space above */
+}
+
+.footer-inner{
+  max-width: var(--max-width);
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* ======================================================
+   SKELETON LOADERS
+   ====================================================== */
+.skeleton{
+  height:8px;background:
+  linear-gradient(90deg,
+  rgba(255,255,255,0.02) 25%,
+  rgba(255,255,255,0.06) 50%,
+  rgba(255,255,255,0.02) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.6s linear infinite;
+  border-radius:6px;margin-top:.5rem;
+}
+@keyframes shimmer{
+  from{background-position:200% 0}
+  to{background-position:-200% 0}
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width:720px){
+  .form{grid-template-columns:1fr}
+  .brand .logo{font-size:1.1rem}
+  .footer-inner{flex-direction:column;gap:.5rem}
+  .site-footer{position:static;margin-top:1rem}
+}
